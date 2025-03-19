@@ -1,0 +1,9 @@
+# MICAS Cadence XCELIUM 23.03 (Release 2022-2023)
+
+export CDS_XCELIUM=/esat/micas-data/software/Cadence/xcelium_23.03
+export PATH="${PATH}:${CDS_XCELIUM}/bin:${CDS_XCELIUM}/tools/bin:${CDS_XCELIUM}/tools/cdsgcc/gcc/bin"
+
+alias help_cds_xcelium='$CDS_XCELIUM/bin/cdnshelp &'
+
+# Start with : xrun, simvision, xmvhdl, xmvlog, xmsc, xmelab, xmsim, xmls, xmhelp, xfr, xmxlimport
+

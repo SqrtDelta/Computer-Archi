@@ -1,0 +1,403 @@
+xrun(64): 23.03-s002: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.03-s002: Started on Mar 19, 2025 at 11:34:06 CET
+xrun
+	+sv
+	-64bit
+	-f files_verilog.f
+		../Verilog/RTL/alu.v
+		../Verilog/RTL/alu_control.v
+		../Verilog/RTL/branch_unit.v
+		../Verilog/RTL/control_unit.v
+		../Verilog/RTL/cpu.v
+		../Verilog/RTL/immediate_extend_unit.v
+		../Verilog/RTL/mux_2.v
+		../Verilog/RTL/pc.v
+		../Verilog/RTL/register_file.v
+		../Verilog/RTL/reg_arstn.v
+		../Verilog/RTL/reg_arstn_en.v
+		../Verilog/RTL/sram.v
+		../Verilog/cpu_tb.v
+		../Verilog/sky130_sram_2rw.v
+	-top cpu_tb
+	-timescale 1ns/10ps
+	-access +rwc
+	-allowredefinition
+	-linedebug
+	-gui
+xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+file: ../Verilog/RTL/alu.v
+	module worklib.alu:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/alu_control.v
+	module worklib.alu_control:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/branch_unit.v
+	module worklib.branch_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/control_unit.v
+	module worklib.control_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/cpu.v
+	module worklib.cpu:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/immediate_extend_unit.v
+	module worklib.immediate_extend_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/mux_2.v
+	module worklib.mux_2:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/pc.v
+	module worklib.pc:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/register_file.v
+	module worklib.register_file:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/reg_arstn.v
+	module worklib.reg_arstn:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/reg_arstn_en.v
+	module worklib.reg_arstn_en:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/sram.v
+	module worklib.sram_BW32:v
+		errors: 0, warnings: 0
+	module worklib.sram_BW64:v
+		errors: 0, warnings: 0
+file: ../Verilog/cpu_tb.v
+	module worklib.cpu_tb:v
+		errors: 0, warnings: 0
+file: ../Verilog/sky130_sram_2rw.v
+	module worklib.sky130_sram_2rw_32x128_32:v
+		errors: 0, warnings: 0
+	module worklib.sky130_sram_2rw_64x128_64:v
+		errors: 0, warnings: 0
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		cpu_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.branch_unit:v <0x789d029d>
+			streams:   2, words:  1159
+		worklib.alu:v <0x380d2b77>
+			streams:   7, words: 11024
+		worklib.alu_control:v <0x084ec637>
+			streams:   3, words:  3084
+		worklib.control_unit:v <0x27a152c8>
+			streams:   1, words:  3499
+		worklib.sky130_sram_2rw_64x128_64:v <0x0f0d7f96>
+			streams:   4, words:  6070
+		worklib.sky130_sram_2rw_32x128_32:v <0x41699aa3>
+			streams:   6, words:  5178
+		worklib.reg_arstn_en:v <0x38c3c2b5>
+			streams:   5, words:  2171
+		worklib.mux_2:v <0x16167ab6>
+			streams:   1, words:   894
+		worklib.pc:v <0x0dc016c0>
+			streams:   5, words:  2297
+		worklib.immediate_extend_unit:v <0x60e8e692>
+			streams:   3, words:  4480
+		worklib.cpu_tb:v <0x1b085a5b>
+			streams:  27, words: 95808
+		worklib.sram_BW32:v <0x610e1f3d>
+			streams:  11, words:  7043
+		worklib.sram_BW64:v <0x77c4d9dc>
+			streams:  11, words:  7150
+		worklib.register_file:v <0x381a19ca>
+			streams:   5, words:  7431
+		worklib.cpu:v <0x0a0fe967>
+			streams:   3, words:   581
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                 18      15
+		Registers:              103     100
+		Scalar wires:            31       -
+		Expanded wires:          32       1
+		Vectored wires:          38       -
+		Always blocks:           40      37
+		Initial blocks:           3       3
+		Cont. assignments:        4       4
+		Pseudo assignments:      33       -
+		Simulation timescale:  10ps
+	Writing initial simulation snapshot: worklib.cpu_tb:v
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /esat/micas-data/software/Cadence/xcelium_23.03/tools/xcelium/files/xmsimrc
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm cpu_tb.addr_ext cpu_tb.addr_ext_2 cpu_tb.arst_n cpu_tb.clk cpu_tb.counter cpu_tb.data_mem cpu_tb.dmem_cnt cpu_tb.enable cpu_tb.half_clock_period_ns cpu_tb.imem_cnt cpu_tb.instr_mem cpu_tb.rdata_ext cpu_tb.rdata_ext_2 cpu_tb.ref_reg cpu_tb.ref_str cpu_tb.ren_ext cpu_tb.ren_ext_2 cpu_tb.wdata_ext cpu_tb.wdata_ext_2 cpu_tb.wen_ext cpu_tb.wen_ext_2
+Created probe 1
+xcelium> run
+
+Start Execution
+
+[1;31m
+Error in test case:                         ADDI(x8)
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000000000000000000000000000000000000000111
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                         ADDI(x9)
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000000000000000000000000000000000000001001
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                               SD
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000000000000000000000000000000000000001001
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                               LD
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000001001000110100010101100111100010011010
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                              ADD
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000001001000110100010101100111100010100011
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                              BEQ
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000000000010010001101000101011001111000100111101
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+[1;31m
+Error in test case:                              SLL
+Debug info, value:    0000000000000000000000000000000000000000000000000000000000000000
+Debug info, expected: 0000000000000000000010010001101000101011001111000100110100000000
+[0m
+Debug info, reg_array[          0]: 0000000000000000
+Debug info, reg_array[          1]: 0000000000000000
+Debug info, reg_array[          2]: 0000000000000000
+Debug info, reg_array[          3]: 0000000000000000
+Debug info, reg_array[          4]: 0000000000000000
+Debug info, reg_array[          5]: 0000000000000000
+Debug info, reg_array[          6]: 0000000000000000
+Debug info, reg_array[          7]: 0000000000000000
+Debug info, reg_array[          8]: 0000000000000000
+Debug info, reg_array[          9]: 0000000000000000
+Debug info, reg_array[         10]: 0000000000000000
+Debug info, reg_array[         11]: 0000000000000000
+Debug info, reg_array[         12]: 0000000000000000
+Debug info, reg_array[         13]: 0000000000000000
+Debug info, reg_array[         14]: 0000000000000000
+Debug info, reg_array[         15]: 0000000000000000
+Debug info, reg_array[         16]: 0000000000000000
+Debug info, reg_array[         17]: 0000000000000000
+Debug info, reg_array[         18]: 0000000000000000
+Debug info, reg_array[         19]: 0000000000000000
+Debug info, reg_array[         20]: 0000000000000000
+Debug info, reg_array[         21]: 0000000000000000
+Debug info, reg_array[         22]: 0000000000000000
+Debug info, reg_array[         23]: 0000000000000000
+Debug info, reg_array[         24]: 0000000000000000
+Debug info, reg_array[         25]: 0000000000000000
+Debug info, reg_array[         26]: 0000000000000000
+Debug info, reg_array[         27]: 0000000000000000
+Debug info, reg_array[         28]: 0000000000000000
+Debug info, reg_array[         29]: 0000000000000000
+Debug info, reg_array[         30]: 0000000000000000
+Debug info, reg_array[         31]: 0000000000000000
+         10 cycles
+Simulation complete via $finish(1) at time 29450 NS + 8
+../Verilog/cpu_tb.v:341    $finish;
+xcelium> ^C
+xcelium> exit
+TOOL:	xrun(64)	23.03-s002: Exiting on Mar 19, 2025 at 12:03:44 CET  (total: 00:29:38)

@@ -1,0 +1,92 @@
+|==============================================================================|
+|=========                      OpenRAM v1.1.19                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========           Temp dir: /tmp/openram_jun_1697_temp/            =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+** Start: 03/06/2023 23:41:48
+Technology: sky130
+Total size: 8192 bits
+Word size: 64
+Words: 128
+Banks: 1
+RW ports: 2
+R-only ports: 0
+W-only ports: 0
+DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+Only generating nominal corner timing.
+Words per row: 1
+Output files are: 
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.lvs
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.sp
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.v
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.lib
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.py
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.html
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.log
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.lef
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.gds
+** Submodules: 5.4 seconds
+** Placement: 0.2 seconds
+**** Retrieving pins: 0.0 seconds
+**** Analyzing pins: 0.0 seconds
+**** Finding blockages: 8.0 seconds
+**** Converting blockages: 0.4 seconds
+WARNING: file pin_group.py: line 656:   Expanding conversion (addr1[5] layer=m3 ll=v[342.255,-7.01] ur=v[342.745,-6.5200000000000005])
+
+**** Converting pins: 0.9 seconds
+**** Separating adjacent pins: 0.2 seconds
+**** Enclosing pins: 0.2 seconds
+*** Finding pins and blockages: 58.3 seconds
+*** Maze routing pins: 556.7 seconds
+**** Retrieving pins: 0.2 seconds
+**** Analyzing pins: 6.9 seconds
+**** Finding blockages: 36.4 seconds
+**** Converting blockages: 0.2 seconds
+WARNING: file pin_group.py: line 656:   Expanding conversion (vdd layer=m3 ll=v[153.305,357.685] ur=v[153.79500000000002,358.175])
+
+WARNING: file pin_group.py: line 656:   Expanding conversion (vdd layer=m3 ll=v[159.145,357.685] ur=v[159.635,358.175])
+
+WARNING: file pin_group.py: line 656:   Expanding conversion (vdd layer=m3 ll=v[164.985,357.685] ur=v[165.475,358.175])
+
+WARNING: file pin_group.py: line 656:   Expanding conversion (vdd layer=m3 ll=v[170.82500000000002,357.685] ur=v[171.315,358.175])
+
+**** Converting pins: 12.1 seconds
+**** Separating adjacent pins: 20.7 seconds
+**** Enclosing pins: 26.8 seconds
+*** Finding pins and blockages: 166.8 seconds
+WARNING: file supply_tree_router.py: line 176: Unblocking supply self blockages to improve access (may cause DRC errors):
+vdd
+{(layer=m3 ll=v[164.985,357.685] ur=v[165.475,358.175])})
+
+*** Maze routing supplies: 1200.5 seconds
+** Routing: 2259.0 seconds
+** Verification: 0.0 seconds
+** SRAM creation: 2264.9 seconds
+SP: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.sp
+** Spice writing: 0.7 seconds
+GDS: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.gds
+** GDS: 52.1 seconds
+LEF: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.lef
+** LEF: 0.1 seconds
+LVS: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.lvs.sp
+** LVS writing: 0.1 seconds
+LIB: Characterizing... 
+WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+** Characterization: 0.6 seconds
+Config: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.py
+** Config: 0.0 seconds
+Datasheet: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.html
+** Datasheet: 0.0 seconds
+Verilog: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_64x128_64.v
+** Verilog: 0.0 seconds
+** End: 2318.3 seconds

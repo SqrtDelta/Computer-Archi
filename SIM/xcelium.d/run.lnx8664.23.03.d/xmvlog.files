@@ -1,0 +1,18 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu_control.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/branch_unit.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/control_unit.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/cpu.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/immediate_extend_unit.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/mux_2.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/pc.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/register_file.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/reg_arstn.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/reg_arstn_en.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/sram.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/cpu_tb.v"
+"/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/sky130_sram_2rw.v"

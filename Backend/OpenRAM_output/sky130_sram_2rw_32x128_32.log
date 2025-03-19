@@ -1,0 +1,78 @@
+|==============================================================================|
+|=========                      OpenRAM v1.1.19                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========           Temp dir: /tmp/openram_jun_1621_temp/            =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+** Start: 03/06/2023 23:25:00
+Technology: sky130
+Total size: 4096 bits
+Word size: 32
+Words: 128
+Banks: 1
+RW ports: 2
+R-only ports: 0
+W-only ports: 0
+DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+Only generating nominal corner timing.
+Words per row: 2
+Output files are: 
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.lvs
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.sp
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.v
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.lib
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.py
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.html
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.log
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.lef
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.gds
+** Submodules: 3.2 seconds
+** Placement: 0.1 seconds
+**** Retrieving pins: 0.0 seconds
+**** Analyzing pins: 0.0 seconds
+**** Finding blockages: 3.2 seconds
+**** Converting blockages: 0.2 seconds
+**** Converting pins: 0.3 seconds
+**** Separating adjacent pins: 0.1 seconds
+**** Enclosing pins: 0.1 seconds
+*** Finding pins and blockages: 29.2 seconds
+*** Maze routing pins: 143.7 seconds
+**** Retrieving pins: 0.1 seconds
+**** Analyzing pins: 2.5 seconds
+**** Finding blockages: 14.8 seconds
+**** Converting blockages: 0.3 seconds
+**** Converting pins: 6.0 seconds
+**** Separating adjacent pins: 6.1 seconds
+**** Enclosing pins: 8.6 seconds
+*** Finding pins and blockages: 69.2 seconds
+*** Maze routing supplies: 466.8 seconds
+** Routing: 863.1 seconds
+** Verification: 0.0 seconds
+** SRAM creation: 866.5 seconds
+SP: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.sp
+** Spice writing: 0.4 seconds
+GDS: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.gds
+** GDS: 27.1 seconds
+LEF: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.lef
+** LEF: 0.0 seconds
+LVS: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.lvs.sp
+** LVS writing: 0.0 seconds
+LIB: Characterizing... 
+WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+** Characterization: 0.4 seconds
+Config: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.py
+** Config: 0.0 seconds
+Datasheet: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.html
+** Datasheet: 0.0 seconds
+Verilog: Writing to /home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_32x128_32.v
+** Verilog: 0.0 seconds
+** End: 894.4 seconds

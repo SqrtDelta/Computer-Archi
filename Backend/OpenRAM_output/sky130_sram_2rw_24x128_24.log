@@ -1,0 +1,38 @@
+|==============================================================================|
+|=========                      OpenRAM v1.1.19                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========            Temp dir: /tmp/openram_jun_323_temp/            =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+** Start: 03/06/2023 22:06:27
+Technology: sky130
+Total size: 3072 bits
+Word size: 24
+Words: 128
+Banks: 1
+RW ports: 2
+R-only ports: 0
+W-only ports: 0
+DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+Only generating nominal corner timing.
+Words per row: 2
+Output files are: 
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.lvs
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.sp
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.v
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.lib
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.py
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.html
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.log
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.lef
+/home/jun/Project/Backend/openhw_examples/test/./OpenRAM/sky130_sram_2rw_24x128_24.gds
+** Submodules: 2.6 seconds
+** Placement: 0.1 seconds
