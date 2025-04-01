@@ -1,8 +1,7 @@
-// module: Control
-// Function: Generates the control signals for each one of the datapath resources
-
 module control_unit(
       input  wire [6:0] opcode,
+      input  wire [6:0] funct7,
+      input  wire [2:0] func3,
       output reg  [1:0] alu_op,
       output reg        reg_dst,
       output reg        branch,
@@ -11,10 +10,11 @@ module control_unit(
       output reg        mem_write,
       output reg        alu_src,
       output reg        reg_write,
-      output reg        jump
+      output reg        jump,
+      output reg        mult
    );
 
-   // RISC-V opcode[6:0] (see RISC-V greensheet)
+   // RISC-V opcode[6:0]
    parameter integer ALU_R      = 7'b0110011;
    parameter integer ALU_I      = 7'b0010011;
    parameter integer BRANCH_EQ  = 7'b1100011;
@@ -22,17 +22,25 @@ module control_unit(
    parameter integer LOAD       = 7'b0000011;
    parameter integer STORE      = 7'b0100011;
 
-   // RISC-V ALUOp[1:0] (see book Figure 4.12)
+   // RISC-V ALUOp[1:0]
    parameter [1:0] ADD_OPCODE     = 2'b00;
    parameter [1:0] SUB_OPCODE     = 2'b01;
    parameter [1:0] R_TYPE_OPCODE  = 2'b10;
 
-   //The behavior of the control unit can be found in Chapter 4, Figure 4.18
-
-   always@(*)begin
-
+   always @(*) begin
+      // 默认值
+      alu_src   = 1'b0;
+      mem_2_reg = 1'b0;
+      reg_write = 1'b0;
+      mem_read  = 1'b0;
+      mem_write = 1'b0;
+      branch    = 1'b0;
+      alu_op    = R_TYPE_OPCODE;
+      jump      = 1'b0;
+      mult      = 1'b0;
+      
       case(opcode)
-         ALU_R:begin
+         ALU_R: begin
             alu_src   = 1'b0;
             mem_2_reg = 1'b0;
             reg_write = 1'b1;
@@ -41,11 +49,68 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = R_TYPE_OPCODE;
             jump      = 1'b0;
+            // 检测是否为 MULT 指令：funct7 == 0000001 且 func3 == 000
+            if (funct7 == 7'b0000001 && func3 == 3'b000)
+                mult = 1'b1;
+            else
+                mult = 1'b0;
          end
-         
-         // Declare the control signals for each one of the instructions here...
-
-         default:begin
+         ALU_I: begin
+            alu_src   = 1'b1;
+            mem_2_reg = 1'b0;
+            reg_write = 1'b1;
+            mem_read  = 1'b0;
+            mem_write = 1'b0;
+            branch    = 1'b0;
+            alu_op    = ADD_OPCODE; // 用于立即数加法
+            jump      = 1'b0;
+            mult      = 1'b0;
+         end
+         LOAD: begin
+            alu_src   = 1'b1;
+            mem_2_reg = 1'b1;
+            reg_write = 1'b1;
+            mem_read  = 1'b1;
+            mem_write = 1'b0;
+            branch    = 1'b0;
+            alu_op    = ADD_OPCODE; // 地址计算
+            jump      = 1'b0;
+            mult      = 1'b0;
+         end
+         STORE: begin
+            alu_src   = 1'b1;
+            mem_2_reg = 1'b0; // 无关紧要
+            reg_write = 1'b0;
+            mem_read  = 1'b0;
+            mem_write = 1'b1;
+            branch    = 1'b0;
+            alu_op    = ADD_OPCODE; // 地址计算
+            jump      = 1'b0;
+            mult      = 1'b0;
+         end
+         BRANCH_EQ: begin
+            alu_src   = 1'b0;
+            mem_2_reg = 1'b0; // 无关紧要
+            reg_write = 1'b0;
+            mem_read  = 1'b0;
+            mem_write = 1'b0;
+            branch    = 1'b1;
+            alu_op    = SUB_OPCODE; // 用于比较
+            jump      = 1'b0;
+            mult      = 1'b0;
+         end
+         JUMP: begin
+            alu_src   = 1'b0; // 无关紧要
+            mem_2_reg = 1'b0; // 无关紧要
+            reg_write = 1'b1; // 写回返回地址（可选）
+            mem_read  = 1'b0;
+            mem_write = 1'b0;
+            branch    = 1'b0;
+            alu_op    = ADD_OPCODE; // 用于跳转地址计算
+            jump      = 1'b1;
+            mult      = 1'b0;
+         end
+         default: begin
             alu_src   = 1'b0;
             mem_2_reg = 1'b0;
             reg_write = 1'b0;
@@ -54,11 +119,10 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = R_TYPE_OPCODE;
             jump      = 1'b0;
+            mult      = 1'b0;
          end
       endcase
    end
 
 endmodule
-
-
 
