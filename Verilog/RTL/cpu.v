@@ -22,6 +22,17 @@ wire [63:0] current_pc;
 wire [31:0] instruction;
 wire [63:0] updated_pc;
 
+wire [225:0] mem_wb_dout;
+
+
+wire [63:0] pc_MEM_WB        = mem_wb_dout[225-:64];
+wire [63:0] alu_out_MEM_WB     = mem_wb_dout[161-:64];
+wire [63:0] mem_data_MEM_WB    = mem_wb_dout[97-:64];
+wire [31:0] instruction_MEM_WB = mem_wb_dout[65-:32];
+wire        reg_write_MEM_WB   = mem_wb_dout[33];
+wire        mem_2_reg_MEM_WB   = mem_wb_dout[32];
+
+
 // pc 模块：产生当前 PC 与更新后的 PC
 pc #(
     .DATA_W(64)
@@ -107,9 +118,11 @@ immediate_extend_unit immediate_extend_u (
 
 // 寄存器堆（ID 阶段读出）
 wire [63:0] regfile_rdata_1, regfile_rdata_2;
+wire [63:0] regfile_wdata;
+
 register_file #(
     .DATA_W(64)
-) register_file_inst (
+) register_file (
     .clk      (clk),
     .arst_n   (arst_n),
     .reg_write(reg_write),  // 写回信号将由 WB 阶段产生（后续连接）
@@ -190,7 +203,7 @@ mux_2 #(
 // ALU 控制单元
 wire [3:0] alu_control;
 alu_control alu_ctrl (
-    .func7       (instruction_ID_EX[31:25]),
+    .funct7       (instruction_ID_EX[31:25]),
     .func3       (instruction_ID_EX[14:12]),
     .alu_op      (alu_op_ID_EX),
     .mult        (mult_ID_EX),
@@ -264,7 +277,6 @@ sram_BW64 #(
 // 将 MEM 阶段的 PC、ALU 结果、存储器数据、指令及控制信号（reg_write、mem_2_reg）传递到 WB 阶段
 // 总宽度 = 64 + 64 + 64 + 32 + 2 = 226 位
 // ------------------------------
-wire [225:0] mem_wb_dout;
 reg_arstn_en #(
     .DATA_W(226)
 ) MEM_WB_pipe (
@@ -275,17 +287,10 @@ reg_arstn_en #(
               reg_write_EX_MEM, mem_2_reg_EX_MEM}),
     .dout   (mem_wb_dout)
 );
-wire [63:0] pc_MEM_WB        = mem_wb_dout[225-:64];
-wire [63:0] alu_out_MEM_WB     = mem_wb_dout[161-:64];
-wire [63:0] mem_data_MEM_WB    = mem_wb_dout[97-:64];
-wire [31:0] instruction_MEM_WB = mem_wb_dout[65-:32];
-wire        reg_write_MEM_WB   = mem_wb_dout[33];
-wire        mem_2_reg_MEM_WB   = mem_wb_dout[32];
 
 // ==============================
 // WB 阶段：写回寄存器堆
 // 根据 mem_2_reg_MEM_WB 信号选择写回数据来源（存储器数据或 ALU 运算结果）
-wire [63:0] regfile_wdata;
 mux_2 #(
     .DATA_W(64)
 ) regfile_data_mux (

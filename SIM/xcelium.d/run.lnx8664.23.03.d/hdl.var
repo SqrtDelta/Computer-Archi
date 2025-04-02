@@ -1,7 +1,7 @@
 define XMSIMRC	( /esat/micas-data/software/Cadence/xcelium_23.03/tools/xcelium/files/xmsimrc, ~/.xmsimrc )
 define AMSRC	( /esat/micas-data/software/Cadence/xcelium_23.03/tools/xcelium/files/amsrc, ~/.amsrc )
 include ./hdlrun.var
-define SNAPSHOT worklib.reg_arstn:v
+define SNAPSHOT worklib.branch_unit:v
 DEFINE RUNMODEDEFAULT 1
 DEFINE LIB_MAP ( + => worklib )
 define ELAB_SNAPSHOT
