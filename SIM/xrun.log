@@ -1,5 +1,5 @@
 xrun(64): 23.03-s002: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.03-s002: Started on Apr 02, 2025 at 12:08:09 CEST
+TOOL:	xrun(64)	23.03-s002: Started on Apr 16, 2025 at 14:33:14 CEST
 xrun
 	+sv
 	-64bit
@@ -25,7 +25,52 @@ xrun
 	-linedebug
 	-gui
 xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
-Recompiling... reason: unable to stat '/./users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/RTL/immediate_extend_unit.v'.
+file: ../Verilog/RTL/alu.v
+	module worklib.alu:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/alu_control.v
+	module worklib.alu_control:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/branch_unit.v
+	module worklib.branch_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/control_unit.v
+	module worklib.control_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/cpu.v
+	module worklib.cpu:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/immediate_extend_unit.v
+	module worklib.immediate_extend_unit:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/mux_2.v
+	module worklib.mux_2:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/pc.v
+	module worklib.pc:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/register_file.v
+	module worklib.register_file:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/reg_arstn.v
+	module worklib.reg_arstn:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/reg_arstn_en.v
+	module worklib.reg_arstn_en:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/sram.v
+	module worklib.sram_BW32:v
+		errors: 0, warnings: 0
+	module worklib.sram_BW64:v
+		errors: 0, warnings: 0
+file: ../Verilog/cpu_tb.v
+	module worklib.cpu_tb:v
+		errors: 0, warnings: 0
+file: ../Verilog/sky130_sram_2rw.v
+	module worklib.sky130_sram_2rw_32x128_32:v
+		errors: 0, warnings: 0
+	module worklib.sky130_sram_2rw_64x128_64:v
+		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
@@ -36,13 +81,44 @@ xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,43|17): port sizes differ in port connec
     .jump_pc   (32'd0),
                  |
 xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,44|17): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
-    .din    ({
-             |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,152|13): port sizes differ in port connection(298/297) for the instance(cpu_tb.dut) .
-    .din    ({pc_ID_EX, alu_out, regfile_rdata_2_ID_EX, instruction_ID_EX,
-             |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,240|13): port sizes differ in port connection(230/250) for the instance(cpu_tb.dut) .
 	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.reg_arstn_en:v <0x537c6160>
+			streams:   5, words:  2204
+		worklib.sky130_sram_2rw_64x128_64:v <0x729f3471>
+			streams:   4, words:  6070
+		worklib.reg_arstn_en:v <0x128d4147>
+			streams:   5, words:  2204
+		worklib.alu:v <0x4b8301e9>
+			streams:   7, words: 11586
+		worklib.alu_control:v <0x1c6d9ec3>
+			streams:   2, words:  3115
+		worklib.reg_arstn_en:v <0x62328ecc>
+			streams:   5, words:  2210
+		worklib.immediate_extend_unit:v <0x2f734f47>
+			streams:   3, words:  4351
+		worklib.control_unit:v <0x6413b1e6>
+			streams:   1, words: 15217
+		worklib.reg_arstn_en:v <0x18400497>
+			streams:   5, words:  2353
+		worklib.sky130_sram_2rw_32x128_32:v <0x7c6b0183>
+			streams:   6, words:  5178
+		worklib.reg_arstn_en:v <0x1715f202>
+			streams:   5, words:  2171
+		worklib.mux_2:v <0x4202305b>
+			streams:   1, words:   894
+		worklib.pc:v <0x5f77ad18>
+			streams:   5, words:  2297
+		worklib.cpu_tb:v <0x0075ad2b>
+			streams:  27, words: 95617
+		worklib.sram_BW32:v <0x2f335d43>
+			streams:  11, words:  6879
+		worklib.sram_BW64:v <0x4c14979b>
+			streams:  11, words:  7150
+		worklib.register_file:v <0x138e1769>
+			streams:   5, words:  7240
+		worklib.cpu:v <0x3fc267f0>
+			streams:  52, words: 13559
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
@@ -63,48 +139,18 @@ xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mod
 Relinquished control to SimVision...
 xcelium> 
 xcelium> source /esat/micas-data/software/Cadence/xcelium_23.03/tools/xcelium/files/xmsimrc
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm cpu_tb.dut.register_file.reg_array
+Created probe 1
 xcelium> run
 
 Start Execution
 
-[1;31m
-Error in Mult2 function
+[1;34m
+Mult2 Working Correctly
 [0m
-Debug info, reg_array[          0]: 0000000000000000
-Debug info, reg_array[          1]: 0000000000000000
-Debug info, reg_array[          2]: 0000000000000000
-Debug info, reg_array[          3]: 0000000000000000
-Debug info, reg_array[          4]: 0000000000000000
-Debug info, reg_array[          5]: 0000000000000000
-Debug info, reg_array[          6]: 0000000000000000
-Debug info, reg_array[          7]: 0000000000000000
-Debug info, reg_array[          8]: 0000000000000000
-Debug info, reg_array[          9]: 0000000000000000
-Debug info, reg_array[         10]: 0000000000000000
-Debug info, reg_array[         11]: 0000000000000000
-Debug info, reg_array[         12]: 0000000000000000
-Debug info, reg_array[         13]: 0000000000000000
-Debug info, reg_array[         14]: 0000000000000000
-Debug info, reg_array[         15]: 0000000000000000
-Debug info, reg_array[         16]: 0000000000000000
-Debug info, reg_array[         17]: 0000000000000000
-Debug info, reg_array[         18]: 0000000000000000
-Debug info, reg_array[         19]: 0000000000000000
-Debug info, reg_array[         20]: 0000000000000000
-Debug info, reg_array[         21]: 0000000000000000
-Debug info, reg_array[         22]: 0000000000000000
-Debug info, reg_array[         23]: 0000000000000000
-Debug info, reg_array[         24]: 0000000000000000
-Debug info, reg_array[         25]: 0000000000000000
-Debug info, reg_array[         26]: 0000000000000000
-Debug info, reg_array[         27]: 0000000000000000
-Debug info, reg_array[         28]: 0000000000000000
-Debug info, reg_array[         29]: 0000000000000000
-Debug info, reg_array[         30]: 0000000000000000
-Debug info, reg_array[         31]: 0000000000000000
          40 cycles
 Simulation complete via $finish(1) at time 32450 NS + 8
-/users/students/r1016447/Linux/Computer Architecture/Design Files/CA_Exercise_2025/CA_Exercises/Verilog/cpu_tb.v:341 
-xcelium> ^C
-xcelium> exit
-TOOL:	xrun(64)	23.03-s002: Exiting on Apr 02, 2025 at 12:08:52 CEST  (total: 00:00:43)
+../Verilog/cpu_tb.v:341    $finish;
+xcelium> 
