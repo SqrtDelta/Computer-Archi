@@ -50,4 +50,4 @@ database -open -evcd -into vcd_dump.vcd _vcd_dump.vcd -timescale fs
 database -open -shm -into waves.shm waves -default
 probe -create -database waves cpu_tb.dut.register_file.reg_array
 
-simvision -input /users/students/r1016626/Downloads/Computer-Archi/SIM/.simvision/6611_r1016626__autosave.tcl.svcf
+simvision -input /users/students/r1016626/Downloads/Computer-Archi/SIM/.simvision/9216_r1016626__autosave.tcl.svcf

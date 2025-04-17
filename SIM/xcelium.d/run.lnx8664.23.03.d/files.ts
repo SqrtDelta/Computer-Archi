@@ -2,7 +2,7 @@
 1743588176 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/alu_control.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/branch_unit.v
 1743588176 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/control_unit.v
-1744806182 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/cpu.v
+1744894790 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/cpu.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/immediate_extend_unit.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/mux_2.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/pc.v
@@ -12,3 +12,5 @@
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/sram.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/cpu_tb.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/sky130_sram_2rw.v
+1744892835 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/mux_3.v
+1744892877 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/forwarding_unit.v

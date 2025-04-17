@@ -1,5 +1,5 @@
 xrun(64): 23.03-s002: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.03-s002: Started on Apr 16, 2025 at 14:33:14 CEST
+TOOL:	xrun(64)	23.03-s002: Started on Apr 17, 2025 at 15:00:01 CEST
 xrun
 	+sv
 	-64bit
@@ -18,6 +18,8 @@ xrun
 		../Verilog/RTL/sram.v
 		../Verilog/cpu_tb.v
 		../Verilog/sky130_sram_2rw.v
+		../Verilog/RTL/mux_3.v
+		../Verilog/RTL/forwarding_unit.v
 	-top cpu_tb
 	-timescale 1ns/10ps
 	-access +rwc
@@ -25,62 +27,22 @@ xrun
 	-linedebug
 	-gui
 xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
-file: ../Verilog/RTL/alu.v
-	module worklib.alu:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/alu_control.v
-	module worklib.alu_control:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/branch_unit.v
-	module worklib.branch_unit:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/control_unit.v
-	module worklib.control_unit:v
-		errors: 0, warnings: 0
+Recompiling... reason: file '../Verilog/RTL/cpu.v' is newer than expected.
+	expected: Wed Apr 16 17:18:54 2025
+	actual:   Thu Apr 17 14:59:50 2025
 file: ../Verilog/RTL/cpu.v
 	module worklib.cpu:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/immediate_extend_unit.v
-	module worklib.immediate_extend_unit:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/mux_2.v
-	module worklib.mux_2:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/pc.v
-	module worklib.pc:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/register_file.v
-	module worklib.register_file:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/reg_arstn.v
-	module worklib.reg_arstn:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/reg_arstn_en.v
-	module worklib.reg_arstn_en:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/sram.v
-	module worklib.sram_BW32:v
-		errors: 0, warnings: 0
-	module worklib.sram_BW64:v
-		errors: 0, warnings: 0
-file: ../Verilog/cpu_tb.v
-	module worklib.cpu_tb:v
-		errors: 0, warnings: 0
-file: ../Verilog/sky130_sram_2rw.v
-	module worklib.sky130_sram_2rw_32x128_32:v
-		errors: 0, warnings: 0
-	module worklib.sky130_sram_2rw_64x128_64:v
 		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
 		cpu_tb
-    .branch_pc (32'd0),
-                 |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,43|17): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
-    .jump_pc   (32'd0),
-                 |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,44|17): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
+      .branch_pc(32'd0), .jump_pc(32'd0),
+                  |
+xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,89|18): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
+      .branch_pc(32'd0), .jump_pc(32'd0),
+                                   |
+xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,89|35): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
 		worklib.reg_arstn_en:v <0x537c6160>
@@ -89,16 +51,14 @@ xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,44|17): port sizes differ in port connec
 			streams:   4, words:  6070
 		worklib.reg_arstn_en:v <0x128d4147>
 			streams:   5, words:  2204
-		worklib.alu:v <0x4b8301e9>
-			streams:   7, words: 11586
-		worklib.alu_control:v <0x1c6d9ec3>
-			streams:   2, words:  3115
+		worklib.mux_3:v <0x59554c30>
+			streams:   1, words:  1539
+		worklib.forwarding_unit:v <0x58893534>
+			streams:   1, words:  1935
 		worklib.reg_arstn_en:v <0x62328ecc>
 			streams:   5, words:  2210
 		worklib.immediate_extend_unit:v <0x2f734f47>
 			streams:   3, words:  4351
-		worklib.control_unit:v <0x6413b1e6>
-			streams:   1, words: 15217
 		worklib.reg_arstn_en:v <0x18400497>
 			streams:   5, words:  2353
 		worklib.sky130_sram_2rw_32x128_32:v <0x7c6b0183>
@@ -109,7 +69,7 @@ xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,44|17): port sizes differ in port connec
 			streams:   1, words:   894
 		worklib.pc:v <0x5f77ad18>
 			streams:   5, words:  2297
-		worklib.cpu_tb:v <0x0075ad2b>
+		worklib.cpu_tb:v <0x58d30885>
 			streams:  27, words: 95617
 		worklib.sram_BW32:v <0x2f335d43>
 			streams:  11, words:  6879
@@ -117,20 +77,20 @@ xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,44|17): port sizes differ in port connec
 			streams:  11, words:  7150
 		worklib.register_file:v <0x138e1769>
 			streams:   5, words:  7240
-		worklib.cpu:v <0x3fc267f0>
-			streams:  52, words: 13559
+		worklib.cpu:v <0x6f40c2ef>
+			streams:  56, words: 15558
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                  Instances  Unique
-		Modules:                 21      14
-		Registers:              109      98
+		Modules:                 24      16
+		Registers:              113     101
 		Scalar wires:            51       -
-		Vectored wires:          69       -
-		Always blocks:           46      35
+		Vectored wires:          81       -
+		Always blocks:           49      37
 		Initial blocks:           3       3
 		Cont. assignments:       39      35
-		Pseudo assignments:      50       -
+		Pseudo assignments:      54       -
 		Simulation timescale:  10ps
 	Writing initial simulation snapshot: worklib.cpu_tb:v
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
@@ -148,9 +108,9 @@ xcelium> run
 Start Execution
 
 [1;34m
-Mult2 Working Correctly
+Mult3 Working Correctly
 [0m
-         40 cycles
-Simulation complete via $finish(1) at time 32450 NS + 8
+         25 cycles
+Simulation complete via $finish(1) at time 30950 NS + 8
 ../Verilog/cpu_tb.v:341    $finish;
 xcelium> 
