@@ -1,5 +1,5 @@
 xrun(64): 23.03-s002: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.03-s002: Started on Apr 17, 2025 at 15:00:01 CEST
+TOOL:	xrun(64)	23.03-s002: Started on Apr 19, 2025 at 16:27:48 CEST
 xrun
 	+sv
 	-64bit
@@ -20,6 +20,7 @@ xrun
 		../Verilog/sky130_sram_2rw.v
 		../Verilog/RTL/mux_3.v
 		../Verilog/RTL/forwarding_unit.v
+		../Verilog/RTL/hazard_detection_unit.v
 	-top cpu_tb
 	-timescale 1ns/10ps
 	-access +rwc
@@ -28,69 +29,38 @@ xrun
 	-gui
 xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
 Recompiling... reason: file '../Verilog/RTL/cpu.v' is newer than expected.
-	expected: Wed Apr 16 17:18:54 2025
-	actual:   Thu Apr 17 14:59:50 2025
+	expected: Sat Apr 19 15:57:15 2025
+	actual:   Sat Apr 19 16:27:37 2025
 file: ../Verilog/RTL/cpu.v
 	module worklib.cpu:v
+		errors: 0, warnings: 0
+file: ../Verilog/RTL/register_file.v
+	module worklib.register_file:v
 		errors: 0, warnings: 0
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
 		cpu_tb
-      .branch_pc(32'd0), .jump_pc(32'd0),
-                  |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,89|18): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
-      .branch_pc(32'd0), .jump_pc(32'd0),
-                                   |
-xmelab: *W,CUVMPW (../Verilog/RTL/cpu.v,89|35): port sizes differ in port connection(32/64) for the instance(cpu_tb.dut) .
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.reg_arstn_en:v <0x537c6160>
-			streams:   5, words:  2204
-		worklib.sky130_sram_2rw_64x128_64:v <0x729f3471>
-			streams:   4, words:  6070
-		worklib.reg_arstn_en:v <0x128d4147>
-			streams:   5, words:  2204
-		worklib.mux_3:v <0x59554c30>
-			streams:   1, words:  1539
-		worklib.forwarding_unit:v <0x58893534>
-			streams:   1, words:  1935
-		worklib.reg_arstn_en:v <0x62328ecc>
-			streams:   5, words:  2210
-		worklib.immediate_extend_unit:v <0x2f734f47>
-			streams:   3, words:  4351
-		worklib.reg_arstn_en:v <0x18400497>
-			streams:   5, words:  2353
-		worklib.sky130_sram_2rw_32x128_32:v <0x7c6b0183>
-			streams:   6, words:  5178
-		worklib.reg_arstn_en:v <0x1715f202>
-			streams:   5, words:  2171
-		worklib.mux_2:v <0x4202305b>
-			streams:   1, words:   894
-		worklib.pc:v <0x5f77ad18>
-			streams:   5, words:  2297
-		worklib.cpu_tb:v <0x58d30885>
+		worklib.cpu_tb:v <0x062a05de>
 			streams:  27, words: 95617
-		worklib.sram_BW32:v <0x2f335d43>
-			streams:  11, words:  6879
-		worklib.sram_BW64:v <0x4c14979b>
-			streams:  11, words:  7150
-		worklib.register_file:v <0x138e1769>
-			streams:   5, words:  7240
-		worklib.cpu:v <0x6f40c2ef>
-			streams:  56, words: 15558
+		worklib.register_file:v <0x7673f2bd>
+			streams:   5, words:  8088
+		worklib.cpu:v <0x3b2804e8>
+			streams:  57, words: 16636
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                  Instances  Unique
-		Modules:                 24      16
-		Registers:              113     101
-		Scalar wires:            51       -
-		Vectored wires:          81       -
-		Always blocks:           49      37
+		Modules:                 26      18
+		Registers:              117     105
+		Scalar wires:            54       -
+		Vectored wires:          82       -
+		Always blocks:           52      40
 		Initial blocks:           3       3
-		Cont. assignments:       39      35
-		Pseudo assignments:      54       -
+		Cont. assignments:       42      39
+		Pseudo assignments:      52       -
 		Simulation timescale:  10ps
 	Writing initial simulation snapshot: worklib.cpu_tb:v
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
@@ -108,9 +78,9 @@ xcelium> run
 Start Execution
 
 [1;34m
-Mult3 Working Correctly
+Mult4 Working Correctly
 [0m
-         25 cycles
-Simulation complete via $finish(1) at time 30950 NS + 8
+       1636 cycles
+Simulation complete via $finish(1) at time 199460 NS + 0
 ../Verilog/cpu_tb.v:341    $finish;
 xcelium> 

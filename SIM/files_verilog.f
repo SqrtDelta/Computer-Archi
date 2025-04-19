@@ -14,3 +14,4 @@
 ../Verilog/sky130_sram_2rw.v
 ../Verilog/RTL/mux_3.v
 ../Verilog/RTL/forwarding_unit.v
+../Verilog/RTL/hazard_detection_unit.v
