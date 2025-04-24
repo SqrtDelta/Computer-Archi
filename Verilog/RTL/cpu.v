@@ -1,3 +1,25 @@
+//Module: CPU
+//Function: CPU is the top design of the RISC-V processor
+
+//Inputs:
+//	clk: main clock
+//	arst_n: reset 
+// enable: Starts the execution
+//	addr_ext: Address for reading/writing content to Instruction Memory
+//	wen_ext: Write enable for Instruction Memory
+// ren_ext: Read enable for Instruction Memory
+//	wdata_ext: Write word for Instruction Memory
+//	addr_ext_2: Address for reading/writing content to Data Memory
+//	wen_ext_2: Write enable for Data Memory
+// ren_ext_2: Read enable for Data Memory
+//	wdata_ext_2: Write word for Data Memory
+
+// Outputs:
+//	rdata_ext: Read data from Instruction Memory
+//	rdata_ext_2: Read data from Data Memory
+
+
+
 // rtl/cpu.v
 // 完整五级流水：全转发 + Load-Use 停顿 + ID 级分支/跳转提前判断
 module cpu(

@@ -8,6 +8,7 @@ module hazard_detection_unit (
     output reg         control_stall    // 在 ID/EX 注入气泡
 );
     always @(*) begin
+        // load-command         ld-addr     use-addr-1     ld-addr      use-addr-2
         if (mem_read_ID_EX && ((rd_ID_EX == rs1_IF_ID) || (rd_ID_EX == rs2_IF_ID))) begin
             pc_write      = 1'b0;   // 冻结 PC
             control_stall = 1'b1;   // 注入 EX 级气泡
