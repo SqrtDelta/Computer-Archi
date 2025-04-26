@@ -234,14 +234,14 @@ module cpu(
   );
 
 
-    mux_2 rs1_mux_2(
+    mux_2 #(.DATA_W(64)) rs1_mux_2(
         .input_a  (regfile_rdata_1  ),
         .input_b  (alu_out_EX_MEM  ),
         .select_a (~forwardA_beq),
         .mux_out  (rs1_mux_out  )
     );
 
-    mux_2 rs2_mux_2(
+    mux_2 #(.DATA_W(64)) rs2_mux_2(
         .input_a  (regfile_rdata_2  ),
         .input_b  (alu_out_EX_MEM  ),
         .select_a (~forwardB_beq),
