@@ -124,14 +124,15 @@ module cpu(
   // -----------------------------
   // Load-Use 冒险检测
   // -----------------------------
-  wire        pc_write, control_stall;
+//   wire        pc_write, control_stall;
+  wire        pc_write, LD_EX_Stall;
   hazard_detection_unit hdu (
       .mem_read_ID_EX  (mem_read_ID_EX),
       .rs1_IF_ID       (instruction_IF_ID[19:15]),
       .rs2_IF_ID       (instruction_IF_ID[24:20]),
       .rd_ID_EX        (instruction_ID_EX[11:7]),
       .pc_write        (pc_write),
-      .control_stall   (control_stall)
+      .LD_EX_Stall   (LD_EX_Stall)
   );
 
   // -----------------------------
@@ -178,8 +179,8 @@ module cpu(
   reg_arstn_en #(.DATA_W(96)) IF_ID_pipe (
       .clk   (clk),
       .arst_n(arst_n),
-      .en    (enable & pc_write),
-      .din   ((control_stall || branch_taken || jump)
+      .en    (enable & ~LD_EX_Stall),
+      .din   (( branch_taken || jump)
                ? 96'b0
                : {current_pc, instruction}),
       .dout  (if_id_dout)
@@ -218,7 +219,7 @@ module cpu(
       .clk   (clk),
       .arst_n(arst_n),
       .en    (enable),
-      .din   ((control_stall || branch_taken)
+      .din   ((LD_EX_Stall || branch_taken) // flush 
                ? 298'b0
                : {
                  pc_IF_ID,
