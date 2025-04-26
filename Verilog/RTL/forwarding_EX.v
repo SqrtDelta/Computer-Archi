@@ -1,11 +1,11 @@
 // rtl/forwarding_unit.v
-module forwarding_unit(
+module forwarding_EX(
     input  wire [4:0] rs1_ID_EX,
     input  wire [4:0] rs2_ID_EX,
     input  wire [4:0] rd_EX_MEM,
     input  wire [4:0] rd_MEM_WB,
     input  wire       reg_write_EX_MEM,
-    input  wire       mem_read_EX_MEM,   // 新增：Load 标志
+    input  wire       mem_read_EX_MEM,
     input  wire       reg_write_MEM_WB,
     output reg  [1:0] forwardA,
     output reg  [1:0] forwardB
@@ -16,7 +16,7 @@ module forwarding_unit(
         forwardB = 2'b00;
 
         // MEM/WB 阶段一律可转发（包括 Load 结果）
-        //  上上命令有写入          地址非零
+        //  上上个命令有写入        地址非零
         if (reg_write_MEM_WB && (rd_MEM_WB != 5'b0)) begin
             //   非上个指令
             if (rd_MEM_WB == rs1_ID_EX) forwardA = 2'b10;

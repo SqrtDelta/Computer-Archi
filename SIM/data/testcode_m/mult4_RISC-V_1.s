@@ -8,6 +8,9 @@ addi x21, x0, 0 # C loop index starts with 0
 addi x22, x0, 0 # K loop index starts with 0
 addi x23, x0, 0 # B loop index starts with 0
 addi x7, x0, 0 # accumation result initilization
+addi x23, x0, 4 # for test
+addi x23, x0, -4 # for test
+addi x23, x0, 0 # for test
 B_CHECK: beq x23, x13, B_END
 K_CHECK: beq x22, x12, K_END
 C_CHECK: beq x21, x11, C_END
@@ -32,3 +35,41 @@ addi x25, x25, 40 # input's 64-bit word address +5
 addi x26, x26, -240 # input's 64-bit word address -30
 jal B_CHECK
 B_END:
+
+
+00000C93
+0A000D13
+19000D93
+00500593
+00600613
+00400693
+00000A93
+00000B13
+00000B93
+00000393
+00400B93
+FFC00B93
+00000B93
+04DB8E63
+04CB0263
+02BA8263
+000CB203
+000D3283
+02520333
+006383B3
+001A8A93
+008C8C93
+008D0D13
+FE1FF0EF
+00000A93
+007DB023
+00000393
+001B0B13
+FD8C8C93
+008D8D93
+FC1FF0EF
+00000B13
+001B8B93
+028C8C93
+F10D0D13
+FA9FF0EF
