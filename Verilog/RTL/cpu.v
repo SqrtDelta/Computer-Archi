@@ -233,6 +233,8 @@ module cpu(
       .immediate_extended (immediate_extended)
   );
 
+    wire [63:0] rs1_mux_out;
+    wire [63:0] rs2_mux_out;
 
     mux_2 #(.DATA_W(64)) rs1_mux_2(
         .input_a  (regfile_rdata_1  ),
@@ -249,7 +251,7 @@ module cpu(
     );
 
 
-  assign equal = (rs1_mux_out == rs2_mux_out);
+  assign equal = (rs1_mux_out == rs2_mux_out) ? 1 : 0;
 
   // ID/EX 管道寄存器：在 Load‑Use 停顿或控制冒险（branch）时注入气泡
   reg_arstn_en #(.DATA_W(298)) ID_EX_pipe (
