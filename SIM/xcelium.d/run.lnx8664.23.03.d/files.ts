@@ -2,10 +2,10 @@
 1743588176 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/alu_control.v
 1745068148 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/branch_unit.v
 1743588176 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/control_unit.v
-1745072857 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/cpu.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/cpu.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/immediate_extend_unit.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/mux_2.v
-1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/pc.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/pc.v
 1745072754 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/register_file.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/reg_arstn.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/reg_arstn_en.v
@@ -13,5 +13,7 @@
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/cpu_tb.v
 1743588069 /users/students/r1016626/Downloads/Computer-Archi/Verilog/sky130_sram_2rw.v
 1744895096 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/mux_3.v
-1745070768 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/forwarding_unit.v
-1745068133 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/hazard_detection_unit.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/forwarding_beq.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/forwarding_EX.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/hazard_ld_ex.v
+1745765169 /users/students/r1016626/Downloads/Computer-Archi/Verilog/RTL/hazard_write_beq.v

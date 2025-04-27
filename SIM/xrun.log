@@ -1,5 +1,5 @@
 xrun(64): 23.03-s002: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.03-s002: Started on Apr 19, 2025 at 16:27:48 CEST
+TOOL:	xrun(64)	23.03-s002: Started on Apr 27, 2025 at 18:00:34 CEST
 xrun
 	+sv
 	-64bit
@@ -19,8 +19,10 @@ xrun
 		../Verilog/cpu_tb.v
 		../Verilog/sky130_sram_2rw.v
 		../Verilog/RTL/mux_3.v
-		../Verilog/RTL/forwarding_unit.v
-		../Verilog/RTL/hazard_detection_unit.v
+		../Verilog/RTL/forwarding_beq.v
+		../Verilog/RTL/forwarding_EX.v
+		../Verilog/RTL/hazard_ld_ex.v
+		../Verilog/RTL/hazard_write_beq.v
 	-top cpu_tb
 	-timescale 1ns/10ps
 	-access +rwc
@@ -28,41 +30,6 @@ xrun
 	-linedebug
 	-gui
 xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
-Recompiling... reason: file '../Verilog/RTL/cpu.v' is newer than expected.
-	expected: Sat Apr 19 15:57:15 2025
-	actual:   Sat Apr 19 16:27:37 2025
-file: ../Verilog/RTL/cpu.v
-	module worklib.cpu:v
-		errors: 0, warnings: 0
-file: ../Verilog/RTL/register_file.v
-	module worklib.register_file:v
-		errors: 0, warnings: 0
-	Elaborating the design hierarchy:
-		Caching library 'worklib' ....... Done
-	Top level design units:
-		cpu_tb
-	Building instance overlay tables: .................... Done
-	Generating native compiled code:
-		worklib.cpu_tb:v <0x062a05de>
-			streams:  27, words: 95617
-		worklib.register_file:v <0x7673f2bd>
-			streams:   5, words:  8088
-		worklib.cpu:v <0x3b2804e8>
-			streams:  57, words: 16636
-	Building instance specific data structures.
-	Loading native compiled code:     .................... Done
-	Design hierarchy summary:
-		                  Instances  Unique
-		Modules:                 26      18
-		Registers:              117     105
-		Scalar wires:            54       -
-		Vectored wires:          82       -
-		Always blocks:           52      40
-		Initial blocks:           3       3
-		Cont. assignments:       42      39
-		Pseudo assignments:      52       -
-		Simulation timescale:  10ps
-	Writing initial simulation snapshot: worklib.cpu_tb:v
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
 
 -------------------------------------
@@ -80,7 +47,9 @@ Start Execution
 [1;34m
 Mult4 Working Correctly
 [0m
-       1636 cycles
-Simulation complete via $finish(1) at time 199460 NS + 0
+        828 cycles
+Simulation complete via $finish(1) at time 118660 NS + 0
 ../Verilog/cpu_tb.v:341    $finish;
-xcelium> 
+xcelium> ^C
+xcelium> exit
+TOOL:	xrun(64)	23.03-s002: Exiting on Apr 27, 2025 at 18:05:42 CEST  (total: 00:05:08)

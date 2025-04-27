@@ -1,34 +1,167 @@
-addi x25, x0, 0 # input's address starting point in dmem
-addi x26, x0, 160 # weight's address starting point in dmem
-addi x27, x0, 400 # output's address starting point in dmem
-addi x11, x0, 5 # total C loop size
-addi x12, x0, 6 # total K loop size
-addi x13, x0, 4 # total B loop size
-addi x21, x0, 0 # C loop index starts with 0
-addi x22, x0, 0 # K loop index starts with 0
-addi x23, x0, 0 # B loop index starts with 0
-addi x7, x0, 0 # accumation result initilization
-B_CHECK: beq x23, x13, B_END
-K_CHECK: beq x22, x12, K_END
-C_CHECK: beq x21, x11, C_END
-ld x4, 0(x25) # load 1 input data
-ld x5, 0(x26) # load 1 weight data
-mul x6, x4, x5 # multiply the input with the weight
-add x7, x7, x6 # accumulate the result
-addi x21, x21, 1 # C loop index +1
-addi x25, x25, 8 # input's 64-bit word address +1
-addi x26, x26, 8 # weight's 64-bit word address +1
-jal C_CHECK
-C_END: addi x21, x0, 0 # C loop index restarts with 0
-sd x7, 0(x27) # store the output data
-addi x7, x0, 0 # accumation result reset to 0
-addi x22, x22, 1 # K loop index +1
-addi x25, x25, -40 # input's 64-bit word address -5
-addi x27, x27, 8 # output's 64-bit word address +1
-jal K_CHECK
-K_END: addi x22, x0, 0 # K loop index restarts with 0
-addi x23, x23, 1 # B loop index +1
-addi x25, x25, 40 # input's 64-bit word address +5
-addi x26, x26, -240 # input's 64-bit word address -30
-jal B_CHECK
-B_END:
+    # --- preload constants ---
+    addi x25, x0,    0      # x25 = I base (bytes)
+    addi x26, x0,  160      # x26 = W base (bytes)
+    addi x27, x0,  400      # x27 = O base (bytes)
+    addi x28, x0,    8      # x28 = sizeof(elem)
+
+    # --- Row 0 ---
+    addi x31, x0,    6      # K count
+K0_LOOP:
+    addi x7,  x0,    0      # acc = 0
+
+    ld   x4,     0(x25)
+    ld   x5,     0(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,     8(x25)
+    ld   x5,     8(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    16(x25)
+    ld   x5,    16(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    24(x25)
+    ld   x5,    24(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    32(x25)
+    ld   x5,    32(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    sd   x7,     0(x27)     # O[0][K] = acc
+    add  x27,   x27, x28    # O++
+    addi x26,   x26,   40   # W col++
+    addi x31,   x31,   -1   # K--
+    beq  x31,   x0,   K0_END
+    jal  x0,    K0_LOOP
+K0_END:
+    addi x26,   x26,  -240  # reset W
+
+    # --- Row 1 ---
+    addi x25,   x25,   40   # I → next row
+    addi x31,   x0,    6    # K count
+K1_LOOP:
+    addi x7,    x0,    0    # acc = 0
+
+    ld   x4,     0(x25)
+    ld   x5,     0(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,     8(x25)
+    ld   x5,     8(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    16(x25)
+    ld   x5,    16(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    24(x25)
+    ld   x5,    24(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    32(x25)
+    ld   x5,    32(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    sd   x7,     0(x27)     # O[1][K] = acc
+    add  x27,   x27, x28    # O++
+    addi x26,   x26,   40   # W col++
+    addi x31,   x31,   -1   # K--
+    beq  x31,   x0,   K1_END
+    jal  x0,    K1_LOOP
+K1_END:
+    addi x26,   x26,  -240  # reset W
+
+    # --- Row 2 ---
+    addi x25,   x25,   40   # I → next row
+    addi x31,   x0,    6    # K count
+K2_LOOP:
+    addi x7,    x0,    0    # acc = 0
+
+    ld   x4,     0(x25)
+    ld   x5,     0(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,     8(x25)
+    ld   x5,     8(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    16(x25)
+    ld   x5,    16(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    24(x25)
+    ld   x5,    24(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    32(x25)
+    ld   x5,    32(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    sd   x7,     0(x27)     # O[2][K] = acc
+    add  x27,   x27, x28    # O++
+    addi x26,   x26,   40   # W col++
+    addi x31,   x31,   -1   # K--
+    beq  x31,   x0,   K2_END
+    jal  x0,    K2_LOOP
+K2_END:
+    addi x26,   x26,  -240  # reset W
+
+    # --- Row 3 ---
+    addi x25,   x25,   40   # I → next row
+    addi x31,   x0,    6    # K count
+K3_LOOP:
+    addi x7,    x0,    0    # acc = 0
+
+    ld   x4,     0(x25)
+    ld   x5,     0(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,     8(x25)
+    ld   x5,     8(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    16(x25)
+    ld   x5,    16(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    24(x25)
+    ld   x5,    24(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    ld   x4,    32(x25)
+    ld   x5,    32(x26)
+    mul  x6,     x4, x5
+    add  x7,     x7, x6
+
+    sd   x7,     0(x27)     # O[3][K] = acc
+    add  x27,   x27, x28    # O++
+    addi x26,   x26,   40   # W col++
+    addi x31,   x31,   -1   # K--
+    beq  x31,   x0,   K3_END
+    jal  x0,    K3_LOOP
+K3_END:
+    addi x26,   x26,  -240  # reset W
+
+
+
