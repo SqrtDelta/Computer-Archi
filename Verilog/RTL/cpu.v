@@ -1,3 +1,25 @@
+//Module: CPU
+//Function: CPU is the top design of the RISC-V processor
+
+//Inputs:
+//	clk: main clock
+//	arst_n: reset 
+// enable: Starts the execution
+//	addr_ext: Address for reading/writing content to Instruction Memory
+//	wen_ext: Write enable for Instruction Memory
+// ren_ext: Read enable for Instruction Memory
+//	wdata_ext: Write word for Instruction Memory
+//	addr_ext_2: Address for reading/writing content to Data Memory
+//	wen_ext_2: Write enable for Data Memory
+// ren_ext_2: Read enable for Data Memory
+//	wdata_ext_2: Write word for Data Memory
+
+// Outputs:
+//	rdata_ext: Read data from Instruction Memory
+//	rdata_ext_2: Read data from Data Memory
+
+
+
 // rtl/cpu.v
 // 完整五级流水：全转发 + Load-Use 停顿 + ID 级分支/跳转提前判断
 module cpu(
@@ -35,6 +57,8 @@ module cpu(
   // IF/ID 阶段信号
   wire [63:0] pc_IF_ID;
   wire [31:0] instruction_IF_ID;
+  wire          forwardA_beq;
+  wire          forwardB_beq;
 
   // -----------------------------
   // ID 阶段信号
@@ -63,7 +87,7 @@ module cpu(
   wire [4:0]   rs1_ID_EX = instruction_ID_EX[19:15];
   wire [4:0]   rs2_ID_EX = instruction_ID_EX[24:20];
   wire [4:0]   rd_EX_MEM, rd_MEM_WB;
-  wire [1:0]   forwardA, forwardB;
+  wire [1:0]   forwardA_EX, forwardB_EX;
   wire [63:0]  alu_in_0_fwd, regfile_rdata_2_fwd;
   wire [63:0]  alu_operand_2;
   wire [3:0]   alu_control;
@@ -102,15 +126,35 @@ module cpu(
   // -----------------------------
   // Load-Use 冒险检测
   // -----------------------------
-  wire        pc_write, control_stall;
-  hazard_detection_unit hdu (
+//   wire        pc_write, control_stall;
+  wire        ld_ex_stall;
+  hazard_ld_ex hdu (
       .mem_read_ID_EX  (mem_read_ID_EX),
       .rs1_IF_ID       (instruction_IF_ID[19:15]),
       .rs2_IF_ID       (instruction_IF_ID[24:20]),
       .rd_ID_EX        (instruction_ID_EX[11:7]),
-      .pc_write        (pc_write),
-      .control_stall   (control_stall)
+    //   .pc_write        (pc_write),
+      .ld_ex_stall   (ld_ex_stall)
   );
+
+  // -----------------------------
+  // write beq hazard detect
+  // -----------------------------
+  wire write_beq_stall;
+  hazard_write_beq u_hazard_write_beq(
+      .branch          (branch),
+      .rs1_IF_ID       (instruction_IF_ID[19:15]),
+      .rs2_IF_ID       (instruction_IF_ID[24:20]),
+
+      .reg_write_ID_EX (reg_write_ID_EX),
+      .rd_ID_EX        (instruction_ID_EX[11:7]),
+
+      .mem_read_EX_MEM (mem_read_EX_MEM),
+      .rd_EX_MEM       (instruction_EX_MEM[11:7]),
+
+      .write_beq_stall (write_beq_stall)
+  );
+  
 
   // -----------------------------
   // IF 级：分支/跳转提前决策
@@ -134,7 +178,7 @@ module cpu(
       .branch     (branch),
       .jump       (jump),
       .current_pc (current_pc),
-      .enable     (enable & pc_write),
+      .enable     (enable & ~ld_ex_stall & ~write_beq_stall),
       .updated_pc (updated_pc)
   );
 
@@ -156,8 +200,8 @@ module cpu(
   reg_arstn_en #(.DATA_W(96)) IF_ID_pipe (
       .clk   (clk),
       .arst_n(arst_n),
-      .en    (enable & pc_write),
-      .din   ((control_stall || branch_taken || jump)
+      .en    (enable & ~ld_ex_stall & ~write_beq_stall),
+      .din   (( branch_taken || jump)
                ? 96'b0
                : {current_pc, instruction}),
       .dout  (if_id_dout)
@@ -189,14 +233,32 @@ module cpu(
       .immediate_extended (immediate_extended)
   );
 
-  assign equal = (regfile_rdata_1 == regfile_rdata_2);
+    wire [63:0] rs1_mux_out;
+    wire [63:0] rs2_mux_out;
+
+    mux_2 #(.DATA_W(64)) rs1_mux_2(
+        .input_a  (regfile_rdata_1  ),
+        .input_b  (alu_out_EX_MEM  ),
+        .select_a (~forwardA_beq),
+        .mux_out  (rs1_mux_out  )
+    );
+
+    mux_2 #(.DATA_W(64)) rs2_mux_2(
+        .input_a  (regfile_rdata_2  ),
+        .input_b  (alu_out_EX_MEM  ),
+        .select_a (~forwardB_beq),
+        .mux_out  (rs2_mux_out  )
+    );
+
+
+  assign equal = (rs1_mux_out == rs2_mux_out) ? 1 : 0;
 
   // ID/EX 管道寄存器：在 Load‑Use 停顿或控制冒险（branch）时注入气泡
   reg_arstn_en #(.DATA_W(298)) ID_EX_pipe (
       .clk   (clk),
       .arst_n(arst_n),
       .en    (enable),
-      .din   ((control_stall || branch_taken)
+      .din   ((ld_ex_stall || branch_taken || write_beq_stall) // flush 
                ? 298'b0
                : {
                  pc_IF_ID,
@@ -243,7 +305,7 @@ module cpu(
   // -----------------------------
   // EX 级（转发）
   // -----------------------------
-  forwarding_unit fw_unit (
+  forwarding_EX fw_unit (
       .rs1_ID_EX        (rs1_ID_EX),
       .rs2_ID_EX        (rs2_ID_EX),
       .rd_EX_MEM        (instruction_EX_MEM[11:7]),
@@ -252,22 +314,36 @@ module cpu(
     //   .reg_write_MEM_WB (reg_write_MEM_WB),
       .mem_read_EX_MEM  (mem_read_EX_MEM),    // 新增
       .reg_write_MEM_WB (reg_write_MEM_WB),
-      .forwardA         (forwardA),
-      .forwardB         (forwardB)
+      .forwardA         (forwardA_EX),
+      .forwardB         (forwardB_EX)
   );
+
+  // -----------------------------
+  // beq ID级（转发）
+  // -----------------------------
+  forwarding_beq u_forwarding_beq(
+        .rs1_IF_ID  (instruction_IF_ID[19:15]),
+        .rs2_IF_ID  (instruction_IF_ID[24:20]),
+        .rd_EX_MEM  (instruction_EX_MEM[11:7]),
+        .reg_write_EX_MEM   (reg_write_EX_MEM),
+        .mem_read_EX_MEM    (mem_read_EX_MEM),
+        .forwardA   (forwardA_beq),
+        .forwardB   (forwardB_beq)
+  );
+  
 
   mux_3 #(.DATA_W(64)) muxA (
       .input0 (regfile_rdata_1_ID_EX),
       .input1 (alu_out_EX_MEM),
       .input2 (regfile_wdata),
-      .select (forwardA),
+      .select (forwardA_EX),
       .mux_out(alu_in_0_fwd)
   );
   mux_3 #(.DATA_W(64)) muxB (
       .input0 (regfile_rdata_2_ID_EX),
       .input1 (alu_out_EX_MEM),
       .input2 (regfile_wdata),
-      .select (forwardB),
+      .select (forwardB_EX),
       .mux_out(regfile_rdata_2_fwd)
   );
 
