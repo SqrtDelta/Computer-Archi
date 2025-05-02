@@ -10,8 +10,8 @@ module control_unit(
       output reg        mem_write,
       output reg        alu_src,
       output reg        reg_write,
-      output reg        jump,
-      output reg        mult
+      output reg        jump
+      // output reg        mult
 
       // input  wire [6:0] opcode,
       // output reg  [1:0] alu_op,
@@ -48,7 +48,7 @@ module control_unit(
       branch    = 1'b0;
       alu_op    = R_TYPE_OPCODE;
       jump      = 1'b0;
-      mult      = 1'b0;
+      // mult      = 1'b0;
       
       case(opcode)
          ALU_R: begin
@@ -61,10 +61,10 @@ module control_unit(
             alu_op    = R_TYPE_OPCODE;
             jump      = 1'b0;
             // 检测是否为 MULT 指令：funct7 == 0000001 且 func3 == 000
-            if (funct7 == 7'b0000001 && func3 == 3'b000)
-                mult = 1'b1;
-            else
-                mult = 1'b0;
+            // if (funct7 == 7'b0000001 && func3 == 3'b000)
+            //     mult = 1'b1;
+            // else
+            //     mult = 1'b0;
          end
          ALU_I: begin
             alu_src   = 1'b1;
@@ -75,7 +75,7 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = ADD_OPCODE; // 用于立即数加法
             jump      = 1'b0;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
          LOAD: begin
             alu_src   = 1'b1;
@@ -86,7 +86,7 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = ADD_OPCODE; // 地址计算
             jump      = 1'b0;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
          STORE: begin
             alu_src   = 1'b1;
@@ -97,7 +97,7 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = ADD_OPCODE; // 地址计算
             jump      = 1'b0;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
          BRANCH_EQ: begin
             alu_src   = 1'b0;
@@ -108,7 +108,7 @@ module control_unit(
             branch    = 1'b1;
             alu_op    = SUB_OPCODE; // 用于比较
             jump      = 1'b0;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
          JUMP: begin
             alu_src   = 1'b0; // 无关紧要
@@ -119,7 +119,7 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = ADD_OPCODE; // 用于跳转地址计算
             jump      = 1'b1;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
          default: begin
             alu_src   = 1'b0;
@@ -130,7 +130,7 @@ module control_unit(
             branch    = 1'b0;
             alu_op    = R_TYPE_OPCODE;
             jump      = 1'b0;
-            mult      = 1'b0;
+            // mult      = 1'b0;
          end
       endcase
    end
