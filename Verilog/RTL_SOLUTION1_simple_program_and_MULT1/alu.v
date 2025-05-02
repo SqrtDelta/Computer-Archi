@@ -17,7 +17,7 @@ module alu #(
    parameter [3:0] SRL_OP = 4'd4;
    parameter [3:0] SUB_OP = 4'd6;
    parameter [3:0] SLT_OP = 4'd7;
-   parameter [3:0] MUL_OP = 4'd8;  // 新增乘法操作
+   // parameter [3:0] MUL_OP = 4'd8;  // 新增乘法操作
 
    reg signed [DATA_W-1:0] sub_out, add_out, and_out, or_out, sll_out, srl_out, slt_out;
    reg overflow_add, overflow_sub, msb_equal_flag;
@@ -51,7 +51,7 @@ module alu #(
          SLT_OP:  alu_out = slt_out;
          SLL_OP:  alu_out = sll_out;
          SRL_OP:  alu_out = srl_out;
-         MUL_OP:  alu_out = alu_in_0 * alu_in_1;  // 一周期乘法实现
+         // MUL_OP:  alu_out = alu_in_0 * alu_in_1;  // 一周期乘法实现
          default: alu_out = 0;
       endcase
    end

@@ -90,8 +90,8 @@ control_unit control_unit_inst(
    .mem_write(mem_write),
    .alu_src  (alu_src),
    .reg_write(reg_write),
-   .jump     (jump),
-   .mult     (mult)
+   .jump     (jump)
+   // .mult     (mult)
 );
 
 register_file #(
@@ -112,7 +112,7 @@ alu_control alu_ctrl(
    .funct7       (instruction[31:25]),
    .func3        (instruction[14:12]),
    .alu_op       (alu_op),
-   .mult         (mult),
+   // .mult         (mult),
    .alu_control  (alu_control)
 );
 
