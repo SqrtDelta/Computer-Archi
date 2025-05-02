@@ -2,7 +2,7 @@ module alu_control(
       input wire [6:0] funct7,
       input wire [2:0] func3,
       input wire [1:0] alu_op,
-      input wire       mult,
+      // input wire       mult,
       output reg [3:0] alu_control
    );
 
@@ -19,14 +19,14 @@ module alu_control(
    parameter [3:0] SRL_OP        = 4'd4;
    parameter [3:0] SUB_OP        = 4'd6;
    parameter [3:0] SLT_OP        = 4'd7;
-   parameter [3:0] MUL_OP        = 4'd8;  // 新的乘法操作
+   // parameter [3:0] MUL_OP        = 4'd8;  // 新的乘法操作
 
    reg [3:0] rtype_op;
    
    always @(*) begin
-      if(mult)
-         rtype_op = MUL_OP;
-      else begin
+      // if(mult)
+      //    rtype_op = MUL_OP;
+      // else begin
          case({funct7[5], func3})
             4'b0000: rtype_op = ADD_OP;  // add
             4'b1000: rtype_op = SUB_OP;  // sub
@@ -37,7 +37,7 @@ module alu_control(
             4'b0101: rtype_op = SRL_OP;  // srl
             default: rtype_op = 4'd0;
          endcase
-      end
+      // end
    end
 
    always @(*) begin

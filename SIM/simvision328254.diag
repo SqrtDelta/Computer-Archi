@@ -1,0 +1,114 @@
+*** Message Type: info ***
+When: Sat Apr 26 10:55:43 PM CEST 2025
+SimVision started.
+Version: TOOL:  simvision(64)   23.03-s002
+User: r1016447
+Host: amazone.esat.kuleuven.be
+Platform: Linux/x86_64/5.14.0-503.38.1.el9_5.x86_64
+Started: Sat Apr 26 10:55:43 PM CEST 2025
+Command: /esat/micas-data/software/Cadence/xcelium_23.03/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:amazone.esat.kuleuven.be:47927 -64BIT -nocopyright
+Work Directory: /users/students/r1016447/Documents/CA/Design_Files/CA_Exercise_2025/CA_Exercises/SIM
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:55:43 PM CEST 2025
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:55:45 PM CEST 2025
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:55:47 PM CEST 2025
+Connect to Simulator
+      Design: worklib.cpu_tb:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:   xmsim(64)       23.03-s002
+        User: r1016447
+        Host: amazone.esat.kuleuven.be
+Time Started: Sat Apr 26 10:55:42 PM CEST 2025
+  Process ID: 328220
+   Directory: /users/students/r1016447/Documents/CA/Design_Files/CA_Exercise_2025/CA_Exercises/SIM
+     Command: xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui
+
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:55:48 PM CEST 2025
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:56:49 PM CEST 2025
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:58:38 PM CEST 2025
+Delete waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:58:38 PM CEST 2025
+Exit XM-Sim: abnormal
+      Design: worklib.cpu_tb:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:   xmsim(64)       23.03-s002
+        User: r1016447
+        Host: amazone.esat.kuleuven.be
+Time Started: Sat Apr 26 10:54:48 PM CEST 2025
+  Process ID: 327889
+   Directory: /users/students/r1016447/Documents/CA/Design_Files/CA_Exercise_2025/CA_Exercises/SIM
+     Command: xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui
+
+ 
+*** Message Type: error ***
+When: Sat Apr 26 10:58:40 PM CEST 2025
+XM-Sim Crashed:
+      Design: worklib.cpu_tb:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:   xmsim(64)       23.03-s002
+        User: r1016447
+        Host: amazone.esat.kuleuven.be
+Time Started: Sat Apr 26 10:54:48 PM CEST 2025
+  Process ID: 327889
+   Directory: /users/students/r1016447/Documents/CA/Design_Files/CA_Exercise_2025/CA_Exercises/SIM
+     Command: xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui
+      Design: worklib.cpu_tb:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:  xmsim(64)       23.03-s002
+        User: r1016447
+        Host: amazone.esat.kuleuven.be
+Time Started: Sat Apr 26 10:54:48 PM CEST 2025
+  Process ID: 327889
+   Directory: /users/students/r1016447/Documents/CA/Design_Files/CA_Exercise_2025/CA_Exercises/SIM
+     Command: xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui
+
+Outstanding STRAP Requests:
+        strap::get v cpu_tb.dut.instruction_memory.wen_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.addr_ext_i -vv
+        strap::get v cpu_tb.dut.instruction_memory.csb1 -vv
+        strap::get v cpu_tb.dut.instruction_memory.addr -vv
+        strap::get v cpu_tb.dut.instruction_memory.wdata -vv
+        strap::get v cpu_tb.dut.instruction_memory.mem_sel -vv
+        strap::get v cpu_tb.dut.instruction_memory.addr_i -vv
+        strap::get v cpu_tb.dut.instruction_memory.web1 -vv
+        strap::get v cpu_tb.dut.instruction_memory.wen -vv
+        strap::get v cpu_tb.dut.instruction_memory.rdata -vv
+        strap::get v cpu_tb.dut.instruction_memory.ren -vv
+        strap::get v cpu_tb.dut.instruction_memory.data_i -vv
+        strap::get v cpu_tb.dut.instruction_memory.clk -vv
+        strap::get v cpu_tb.dut.instruction_memory.cs_ext_i -vv
+        strap::get v cpu_tb.dut.instruction_memory.wdata_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.csb0 -vv
+        strap::get v cpu_tb.dut.instruction_memory.addr_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.web0 -vv
+        strap::get v cpu_tb.dut.instruction_memory.ren_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.rdata_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.mem_sel_ext -vv
+        strap::get v cpu_tb.dut.instruction_memory.data_ext_i -vv
+        strap::get v cpu_tb.dut.instruction_memory.cs_i -vv
+ 
+*** Message Type: info ***
+When: Sat Apr 26 10:58:44 PM CEST 2025
+SimVision Exit.
+ 

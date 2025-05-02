@@ -24,7 +24,7 @@ wire reg_dst, branch, mem_read, mem_2_reg, mem_write, alu_src, reg_write, jump;
 wire [4:0] regfile_waddr;
 wire [63:0] regfile_wdata, mem_data, alu_out, regfile_rdata_1, regfile_rdata_2, alu_operand_2;
 wire signed [63:0] immediate_extended;
-wire mult;  // 新的乘法控制信号
+// wire mult;  // 新的乘法控制信号
 
 immediate_extend_unit immediate_extend_u(
     .instruction         (instruction),
@@ -90,8 +90,8 @@ control_unit control_unit_inst(
    .mem_write(mem_write),
    .alu_src  (alu_src),
    .reg_write(reg_write),
-   .jump     (jump),
-   .mult     (mult)
+   .jump     (jump)
+   // .mult     (mult)
 );
 
 register_file #(
@@ -112,7 +112,7 @@ alu_control alu_ctrl(
    .funct7       (instruction[31:25]),
    .func3        (instruction[14:12]),
    .alu_op       (alu_op),
-   .mult         (mult),
+   // .mult         (mult),
    .alu_control  (alu_control)
 );
 
