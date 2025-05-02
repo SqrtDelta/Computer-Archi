@@ -1,5 +1,16 @@
-// rtl/register_file.v
-// 修改后：增加写回数据的“就地”转发，避免同周期写——读不一致
+//Register File
+//Function: This block has 2 main functions (1) Read the registers pointed by the incoming addresses (raddr_1 and raddr_2) into the outputs rdata_1 and rdata_2 respectively. (2) Write the desired writing data (wdata) into the address pointed by the write address (waddr) if write enable (reg_write) is asserted.
+//clk: System clock
+//arst_n: Asynchronous Reset
+//reg_write: Write enable signal. If reg_write is asserted the register file is written in the next clock cycle.
+//Raddr_1 (5 bits): Address of the first register aimed to read.
+//Raddr_2 (5 bits): Address of the second register aimed to read
+//waddr (5 bits): Address of the register to be written.
+//Wdata (16 bits): Incoming data to write.
+//Outputs:
+//rdata_1: Data read from address 1.
+//rdata_2: Data read from address 2.
+
 module register_file#(
    parameter integer DATA_W     = 16
 )(
@@ -15,44 +26,48 @@ module register_file#(
    );
 
    parameter integer N_REG      = 32;
+
+   
+   
    reg [DATA_W-1:0] reg_array     [0:N_REG-1];
    reg [DATA_W-1:0] reg_array_nxt [0:N_REG-1];
+
+
    integer idx;
 
-   // 异步读端口 + 写回前向转发
-   always @(*) begin
-      // 如果当前周期要写回，并且写回地址 == 读地址，就直接读新数据
-      if (reg_write && (waddr != 5'd0) && (waddr == raddr_1))
-         rdata_1 = wdata;
-      else
-         rdata_1 = reg_array[raddr_1];
 
-      if (reg_write && (waddr != 5'd0) && (waddr == raddr_2))
-         rdata_2 = wdata;
-      else
+   always@(*) begin
+         rdata_1 = reg_array[raddr_1];
          rdata_2 = reg_array[raddr_2];
    end
 
-   // 写回下一状态计算（保持与原来一致）
-   always @(*) begin
-      for(idx = 0; idx < N_REG; idx = idx + 1) begin
-         if ((reg_write == 1'b1) && (waddr == idx))
+
+   //Register file write process
+   always@(*) begin
+      for(idx=0; idx<N_REG; idx =idx+1)begin
+         if((reg_write == 1'b1) && (waddr == idx)) begin
             reg_array_nxt[idx] = wdata;
-         else
+         end else begin
             reg_array_nxt[idx] = reg_array[idx];
+         end
       end
    end
 
-   // 同步更新并异步复位（x0 保持为 0）
-   always @(posedge clk, negedge arst_n) begin
-      if (arst_n == 1'b0) begin
-         for (idx = 0; idx < N_REG; idx = idx + 1)
+   always@(posedge clk, negedge arst_n) begin
+      if(arst_n == 1'b0)begin
+         for(idx=0; idx<N_REG; idx =idx+1)begin
             reg_array[idx] <= 'b0;
+         end
       end else begin
-         // 从 1 开始，保持 x0=0
-         for (idx = 1; idx < N_REG; idx = idx + 1)
+         for(idx=1; idx<N_REG; idx =idx+1)begin  // start from reg[1], as x0 should be constant-0.
             reg_array[idx] <= reg_array_nxt[idx];
+         end
       end
    end
 
+    
+    
 endmodule
+
+
+

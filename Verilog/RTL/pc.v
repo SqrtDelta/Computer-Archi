@@ -21,7 +21,7 @@ module pc#(
       input  wire              arst_n,
       input  wire              enable,
       input  wire [DATA_W-1:0] branch_pc,
-      input  wire [DATA_W-1:0] jump_pc,  // 和jump本质上是一个信号 后期可以改进
+      input  wire [DATA_W-1:0] jump_pc,  
       input  wire              zero_flag,
       input  wire              branch,
       input  wire              jump,
