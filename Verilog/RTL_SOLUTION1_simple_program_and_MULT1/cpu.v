@@ -24,7 +24,7 @@ wire reg_dst, branch, mem_read, mem_2_reg, mem_write, alu_src, reg_write, jump;
 wire [4:0] regfile_waddr;
 wire [63:0] regfile_wdata, mem_data, alu_out, regfile_rdata_1, regfile_rdata_2, alu_operand_2;
 wire signed [63:0] immediate_extended;
-wire mult;  // 新的乘法控制信号
+// wire mult;  // 新的乘法控制信号
 
 immediate_extend_unit immediate_extend_u(
     .instruction         (instruction),
